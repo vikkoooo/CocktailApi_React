@@ -1,0 +1,24 @@
+.navbar {
+	background-color: greenyellow;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
+.links {
+	display: flex;
+	justify-content: center;
+	gap: 4rem;
+	padding: 0.5rem 0;
+}
+
+.link {
+	color: darkslategray;
+	text-decoration: none;
+	font-size: 1rem;
+}
+
+.link:hover {
+	text-decoration: underline;
+}
