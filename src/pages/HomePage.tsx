@@ -1,5 +1,5 @@
 import { ReactElement, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { ICocktailContext } from "../interfaces";
 
 export function HomePage(): ReactElement {
@@ -7,20 +7,20 @@ export function HomePage(): ReactElement {
 	const { cocktail, fetchRandomCocktail } = useOutletContext<ICocktailContext>();
 
 	// fetch a random cocktail when HomePage is rendered
-	useEffect(() => {
+	useEffect((): void => {
 		fetchRandomCocktail();
 	}, []);
 
 	return (
 		<div className="home-page">
-			<h1>hello from home</h1>
 			{cocktail && (
-				<div className="cocktail">
+				<div className="cocktail-card">
 					<h2>{cocktail.strDrink}</h2>
 					<img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
-					<p>{cocktail.strInstructions}</p>
+					<Link to={`/info/${cocktail.idDrink}`} className="link">See more</Link>
 				</div>
 			)}
+			<button type="button" onClick={fetchRandomCocktail}>Reload random cocktail</button>
 		</div>
 	);
 }

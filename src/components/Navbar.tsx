@@ -7,7 +7,6 @@ export function Navbar(): ReactElement {
 			<ul className="links">
 				<Link to="/" className="link">Home</Link>
 				<Link to="/search" className="link">Search</Link>
-				<Link to="/info" className="link">Info</Link>
 			</ul>
 		</header>
 	);
