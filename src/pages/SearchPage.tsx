@@ -1,15 +1,22 @@
 import { FormEvent, ReactElement, useState } from "react";
 import { ICocktailContext } from "../interfaces";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 export function SearchPage(): ReactElement {
 	const { drinks, fetchCocktailSearch, } = useOutletContext<ICocktailContext>();
 	const [searchInput, setSearchInput] = useState("");
+	const navigate = useNavigate(); // react navigate functionallity for manual navigation
+
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		fetchCocktailSearch(searchInput);
 		setSearchInput("");
+	}
+
+	const handleCocktailClick = (idDrink: string) => {
+		console.log(idDrink);
+		navigate(`/info/${idDrink}`);
 	}
 
 	return (
@@ -20,7 +27,7 @@ export function SearchPage(): ReactElement {
 			</form>
 			<ul>
 				{drinks && drinks.map(drink => (
-					<li key={drink.idDrink}>
+					<li key={drink.idDrink} onClick={() => handleCocktailClick(drink.idDrink)}>
 						{drink.strDrink}
 					</li>
 				))}
