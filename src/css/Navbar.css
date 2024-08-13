@@ -1,24 +1,55 @@
 .navbar {
-	background-color: greenyellow;
-	position: fixed;
+	align-items: center;
+	background-color: #d6bb92;
+	display: flex;
+	justify-content: center;
+	gap: 4rem;
 	left: 0;
+	padding: 1rem;
+	position: fixed;
 	top: 0;
 	width: 100%;
 }
 
-.links {
-	display: flex;
-	justify-content: center;
-	gap: 4rem;
-	padding: 0.5rem 0;
-}
-
-.link {
-	color: darkslategray;
+.link-home {
+	color: #291f0f;
+	font-family: "Space Mono", monospace;
+	font-size: 1.5rem;
+	font-style: normal;
+	font-weight: 800;
 	text-decoration: none;
-	font-size: 1rem;
 }
 
-.link:hover {
-	text-decoration: underline;
+.spacer {
+	width: 20rem;
+}
+
+.link-search {
+	color: #291f0f;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	text-decoration: none;
+}
+
+.link-search:hover {
+	color: #5c4523;
+}
+
+.button-random {
+	background-color: #ede4d5;
+	color: #291f0f;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	text-decoration: none;
+	padding: 0.3rem 0.6rem;
+	border: solid 1px #c7a26b;
+}
+
+.button-random:hover {
+	background-color: #d89f4b;
+	color: #4b320c;
 }

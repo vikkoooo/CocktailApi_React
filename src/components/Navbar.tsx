@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 export function Navbar(): ReactElement {
 	return (
 		<header className="navbar">
-			<ul className="links">
-				<Link to="/" className="link">Home</Link>
-				<Link to="/search" className="link">Search</Link>
-			</ul>
+			<Link to="/" className="link-home">Drink Showcase</Link>
+			<span className="spacer" />
+			<Link to="/search" className="link-search">Search</Link>
+			<button type="button" onClick={() => console.log("button-random clicked")} className="button-random">Random Cocktail</button>
 		</header>
 	);
 }
