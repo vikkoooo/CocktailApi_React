@@ -3,7 +3,7 @@ import { useOutletContext, useParams } from "react-router-dom";
 import { ICocktail, ICocktailContext } from "../interfaces";
 
 export function CocktailInfoPage(): ReactElement {
-	const { cocktail, fetchCocktailById, } = useOutletContext<ICocktailContext>();
+	const { cocktail, fetchCocktailById } = useOutletContext<ICocktailContext>();
 	const { idDrink } = useParams(); // get id from url https://www.dhiwise.com/post/passing-parameters-to-routes-react-development
 
 	// load on render
@@ -12,7 +12,6 @@ export function CocktailInfoPage(): ReactElement {
 			fetchCocktailById(idDrink);
 		}
 	}, []);
-
 
 	const readIngredientsAndMeasures = () => {
 		if (cocktail === null) {
