@@ -4,11 +4,11 @@ import { ICocktailContext } from "../interfaces";
 
 export function HomePage(): ReactElement {
 	// import context
-	const { cocktail, fetchRandomCocktail } = useOutletContext<ICocktailContext>();
+	const { cocktail, fetchCocktailRandom } = useOutletContext<ICocktailContext>();
 
 	// fetch a random cocktail when HomePage is rendered
 	useEffect((): void => {
-		fetchRandomCocktail();
+		fetchCocktailRandom();
 	}, []);
 
 	return (
@@ -20,7 +20,7 @@ export function HomePage(): ReactElement {
 					<Link to={`/info/${cocktail.idDrink}`} className="link">See more</Link>
 				</div>
 			)}
-			<button type="button" onClick={fetchRandomCocktail}>Reload random cocktail</button>
+			<button type="button" onClick={fetchCocktailRandom}>Reload random cocktail</button>
 		</div>
 	);
 }
