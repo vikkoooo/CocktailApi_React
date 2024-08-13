@@ -2,10 +2,9 @@
 	align-items: center;
 	background-color: #d6bb92;
 	display: flex;
-	justify-content: center;
-	gap: 4rem;
+	justify-content: space-evenly;
 	left: 0;
-	padding: 1rem;
+	padding: 1rem 2rem;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -20,8 +19,10 @@
 	text-decoration: none;
 }
 
-.spacer {
-	width: 20rem;
+.navbar-links {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
 }
 
 .link-search {
@@ -30,6 +31,7 @@
 	font-size: 1rem;
 	font-style: normal;
 	font-weight: 400;
+	padding: 0.5rem;
 	text-decoration: none;
 }
 
@@ -39,14 +41,15 @@
 
 .button-random {
 	background-color: #ede4d5;
+	border: solid 1px #c7a26b;
 	color: #291f0f;
+	cursor: pointer;
 	font-family: "DM Sans", sans-serif;
 	font-size: 1rem;
 	font-style: normal;
 	font-weight: 400;
+	padding: 0.5rem 1rem;
 	text-decoration: none;
-	padding: 0.3rem 0.6rem;
-	border: solid 1px #c7a26b;
 }
 
 .button-random:hover {
