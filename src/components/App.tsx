@@ -6,9 +6,10 @@ import { Navbar } from "./Navbar";
 export function App(): ReactElement {
 	// states
 	const [cocktail, setCocktail] = useState<ICocktail | null>(null);
+	const [drinks, setDrinks] = useState<ICocktail[] | null>(null);
 
 	// functions
-	const fetchRandomCocktail = (): void => {
+	const fetchCocktailRandom = (): void => {
 		fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") // fetch the random api endpoint
 			.then(response => response.json()) // parse to json
 			.then(data => { // data variable will now keep the response object
@@ -30,11 +31,24 @@ export function App(): ReactElement {
 			});
 	};
 
+	const fetchCocktailSearch = (query: string): void => {
+		fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`) // fetch the search api endpoint
+			.then(response => response.json())
+			.then(data => {
+				setDrinks(data.drinks || []); // set drinks array
+			})
+			.catch(error => {
+				console.error("Error fetching the api, error: ", error);
+			});
+	};
+
 	// context
 	const cocktailContext: ICocktailContext = {
 		cocktail,
-		fetchRandomCocktail,
-		fetchCocktailById
+		drinks,
+		fetchCocktailRandom,
+		fetchCocktailById,
+		fetchCocktailSearch
 	};
 
 	return (

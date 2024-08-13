@@ -1,7 +1,9 @@
 export interface ICocktailContext {
 	cocktail: ICocktail | null;
-	fetchRandomCocktail: () => void;
+	drinks: ICocktail[] | null;
+	fetchCocktailRandom: () => void;
 	fetchCocktailById: (idDrink: string) => void;
+	fetchCocktailSearch: (query: string) => void;
 }
 
 export interface ICocktail {
