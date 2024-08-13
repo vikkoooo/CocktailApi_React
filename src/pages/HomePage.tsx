@@ -13,12 +13,14 @@ export function HomePage(): ReactElement {
 
 	return (
 		<div className="home-page">
-			<h1>Featured Drink</h1>
 			{cocktail && (
 				<div className="cocktail-card">
+					<div className="info">
+						<h1>Featured Drink</h1>
+						<h2>{cocktail.strDrink}</h2>
+						<Link to={`/info/${cocktail.idDrink}`} className="link">See More</Link>
+					</div>
 					<img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
-					<h2>{cocktail.strDrink}</h2>
-					<Link to={`/info/${cocktail.idDrink}`} className="link">See More</Link>
 				</div>
 			)}
 			<button type="button" onClick={fetchCocktailRandom}>Reload random cocktail</button>
