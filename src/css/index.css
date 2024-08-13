@@ -1,7 +1,33 @@
 @import url("./App.css");
 @import url("./Navbar.css");
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 * {
 	margin: 0;
 	padding: 0;
+	/* headings and normal text */
+	color: #291f0f;
+	/* nav bar */
+	color: #d6bb92;
+	/* background */
+	color: #ede4d5;
+	/* button no hover */
+	color: #ede4d5;
+	/* button border */
+	color: #c7a26b;
+	/* search link hover */
+	color: #5c4523;
+	/* button on hover */
+	color: #d89f4b;
+	/* button text on hover */
+	color: #4b320c;
+	/* search field inner border */
+	color: #c7a26b;
+	/* search field outer border */
+	color: #6f532a;
+	/* search field text */
+	color: #5c4523;
+	/* search result card background */
+	color: #d4c3a9;
 }
