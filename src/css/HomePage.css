@@ -1,0 +1,55 @@
+.home-page {
+	align-items: center;
+	background-color: #ede4d5;
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	padding: 2rem;
+}
+
+.home-page h1 {
+	color: #291f0f;
+	font-family: "DM Sans", sans-serif;
+	font-size: 2rem;
+	font-style: normal;
+	font-weight: 800;
+}
+
+.cocktail-card {
+	background-color: #d4c3a9;
+	height: auto;
+	max-width: 20rem;
+	padding: 1.5rem;
+	text-align: center;
+}
+
+.cocktail-card h2 {
+	color: #291f0f;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.5rem;
+	font-style: normal;
+	font-weight: 400;
+	margin-bottom: 1.5rem;
+}
+
+.cocktail-card img {
+	height: auto;
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+.cocktail-card .link {
+	background-color: #d6bb92;
+	color: #291f0f;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+}
+
+.cocktail-card .link:hover {
+	background-color: #c7a26b;
+	color: #4b320c;
+}
