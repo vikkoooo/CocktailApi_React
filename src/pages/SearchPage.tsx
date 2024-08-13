@@ -1,23 +1,49 @@
-import { FormEvent, ReactElement, useState } from "react";
-import { ICocktailContext } from "../interfaces";
+import { FormEvent, ReactElement, useEffect, useState } from "react";
+import { ICocktail, ICocktailContext } from "../interfaces";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 export function SearchPage(): ReactElement {
-	const { drinks, fetchCocktailSearch, } = useOutletContext<ICocktailContext>();
+	const { drinks, fetchCocktailSearch } = useOutletContext<ICocktailContext>();
 	const [searchInput, setSearchInput] = useState("");
+	const [page, setPage] = useState(0);
+	const [currentPageDrinks, setCurrentPageDrinks] = useState<ICocktail[]>([]);
+	const drinksPerPage: number = 10;
 	const navigate = useNavigate(); // react navigate functionallity for manual navigation
-
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		fetchCocktailSearch(searchInput);
 		setSearchInput("");
+		setPage(0);
 	}
 
 	const handleCocktailClick = (idDrink: string) => {
-		console.log(idDrink);
 		navigate(`/info/${idDrink}`);
 	}
+
+	const updateCurrentPageDrinks = (): void => {
+		if (drinks != null) {
+			const startIndex = page * drinksPerPage; // will return 0 first time
+			const endIndex = startIndex + drinksPerPage; // will return 10 first time
+			setCurrentPageDrinks(drinks.slice(startIndex, endIndex)); // end exclusive so we get index 0 - 9 first time
+		}
+	};
+
+	useEffect(() => {
+		updateCurrentPageDrinks();
+	}, [drinks, page]); // render when drinks or page is updated
+
+	const navBack = (): void => {
+		if (page >= 1) {
+			setPage(page - 1);
+		}
+	};
+
+	const navForward = (): void => {
+		if (page < Math.ceil(drinks!.length / drinksPerPage) - 1) {
+			setPage(page + 1);
+		}
+	};
 
 	return (
 		<div className="search-page">
@@ -26,12 +52,14 @@ export function SearchPage(): ReactElement {
 				<button type="submit" className="search-button">Search</button>
 			</form>
 			<ul>
-				{drinks && drinks.map(drink => (
+				{drinks && currentPageDrinks.map(drink => (
 					<li key={drink.idDrink} onClick={() => handleCocktailClick(drink.idDrink)}>
 						{drink.strDrink}
 					</li>
 				))}
 			</ul>
+			<button type="button" onClick={navBack}>Prev page</button>
+			<button type="button" onClick={navForward}>Next page</button>
 		</div>
 	);
 }
