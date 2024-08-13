@@ -10,6 +10,10 @@ export function SearchPage(): ReactElement {
 	const drinksPerPage: number = 10;
 	const navigate = useNavigate(); // react navigate functionallity for manual navigation
 
+	useEffect(() => {
+		updateCurrentPageDrinks();
+	}, [drinks, page]); // render when drinks or page is updated
+
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		fetchCocktailSearch(searchInput);
@@ -28,10 +32,6 @@ export function SearchPage(): ReactElement {
 			setCurrentPageDrinks(drinks.slice(startIndex, endIndex)); // end exclusive so we get index 0 - 9 first time
 		}
 	};
-
-	useEffect(() => {
-		updateCurrentPageDrinks();
-	}, [drinks, page]); // render when drinks or page is updated
 
 	const navBack = (): void => {
 		if (page >= 1) {
@@ -58,8 +58,8 @@ export function SearchPage(): ReactElement {
 					</li>
 				))}
 			</ul>
-			<button type="button" onClick={navBack}>Prev page</button>
-			<button type="button" onClick={navForward}>Next page</button>
+			<button type="button" onClick={navBack} disabled={page <= 0}>Prev page</button>
+			<button type="button" onClick={navForward} disabled={!drinks || page >= Math.ceil(drinks.length / drinksPerPage) - 1}>Next page</button>
 		</div>
 	);
 }
