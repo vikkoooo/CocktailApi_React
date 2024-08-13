@@ -23,7 +23,6 @@ export function HomePage(): ReactElement {
 					<img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
 				</div>
 			)}
-			<button type="button" onClick={fetchCocktailRandom}>Reload random cocktail</button>
 		</div>
 	);
 }

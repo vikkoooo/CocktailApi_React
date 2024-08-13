@@ -53,7 +53,7 @@ export function App(): ReactElement {
 
 	return (
 		<div className="app">
-			<Navbar />
+			<Navbar fetchCocktailRandom={fetchCocktailRandom} />
 			<main className="main-content">
 				<Outlet context={cocktailContext} />
 			</main>
