@@ -4,6 +4,8 @@
 	flex-direction: column;
 	justify-content: center;
 	padding: 2rem 10rem;
+	max-width: 100%;
+	box-sizing: border-box;
 }
 
 .cocktail-info-page h1 {
@@ -22,6 +24,20 @@
 	max-height: 35rem;
 	text-align: left;
 	padding: 3rem;
+	flex-direction: column;
+	width: 100%;
+	max-width: 100%;
+	max-height: none;
+}
+
+@media (min-width: 768px) {
+	.cocktail-detail {
+		flex-direction: row;
+	}
+
+	.cocktail-text {
+		width: auto;
+	}
 }
 
 .cocktail-detail img {
