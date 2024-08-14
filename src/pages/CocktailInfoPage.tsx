@@ -15,7 +15,7 @@ export function CocktailInfoPage(): ReactElement {
 
 	const readIngredientsAndMeasures = () => {
 		if (cocktail === null) {
-			return;
+			return [];
 		}
 
 		const fullIngredientsList = [];

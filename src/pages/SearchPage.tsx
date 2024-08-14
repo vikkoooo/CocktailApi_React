@@ -62,8 +62,8 @@ export function SearchPage(): ReactElement {
 				))}
 			</ul>
 			<div className="search-buttons">
-				<button type="button" onClick={navBack} disabled={page <= 0}>Prev page</button>
-				<button type="button" onClick={navForward} disabled={!drinks || page >= Math.ceil(drinks.length / drinksPerPage) - 1}>Next page</button>
+				<button type="button" onClick={navBack} disabled={page <= 0}>Prev Page</button>
+				<button type="button" onClick={navForward} disabled={!drinks || page >= Math.ceil(drinks.length / drinksPerPage) - 1}>Next Page</button>
 			</div>
 		</div>
 	);
