@@ -47,19 +47,24 @@ export function SearchPage(): ReactElement {
 
 	return (
 		<div className="search-page">
+			<h1>Search Drinks</h1>
 			<form className="search-form" onSubmit={handleSubmit}>
-				<input type="text" className="search-input" placeholder="Search.." value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+				<input type="text" className="search-input" placeholder=" 🔎︎  Search for a drink..." value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
 				<button type="submit" className="search-button">Search</button>
 			</form>
 			<ul>
 				{drinks && currentPageDrinks.map(drink => (
 					<li key={drink.idDrink} onClick={() => handleCocktailClick(drink.idDrink)}>
-						{drink.strDrink}
+						<img src={drink.strDrinkThumb} />
+						<p>{drink.strDrink}</p>
+						<span>See More</span>
 					</li>
 				))}
 			</ul>
-			<button type="button" onClick={navBack} disabled={page <= 0}>Prev page</button>
-			<button type="button" onClick={navForward} disabled={!drinks || page >= Math.ceil(drinks.length / drinksPerPage) - 1}>Next page</button>
+			<div className="search-buttons">
+				<button type="button" onClick={navBack} disabled={page <= 0}>Prev page</button>
+				<button type="button" onClick={navForward} disabled={!drinks || page >= Math.ceil(drinks.length / drinksPerPage) - 1}>Next page</button>
+			</div>
 		</div>
 	);
 }

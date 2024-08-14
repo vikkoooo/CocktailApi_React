@@ -4,9 +4,7 @@
 @import url("./CocktailInfoPage.css");
 @import url("./HomePage.css");
 @import url("./Navbar.css");
-/*
 @import url("./SearchPage.css");
-*/
 
 * {
 	margin: 0;
@@ -37,4 +35,8 @@
 	color: #d4c3a9;
 	/* default unstyled text */
 	color: black;
+}
+
+body {
+	background-color: #ede4d5;
 }
