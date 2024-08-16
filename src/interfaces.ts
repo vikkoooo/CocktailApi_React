@@ -4,6 +4,7 @@ export interface ICocktailContext {
 	fetchCocktailRandom: () => void;
 	fetchCocktailById: (idDrink: string) => void;
 	fetchCocktailSearch: (query: string) => void;
+	isLoading: boolean;
 }
 
 export interface ICocktail {

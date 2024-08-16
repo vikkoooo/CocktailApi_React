@@ -3,7 +3,7 @@ import { useOutletContext, useParams } from "react-router-dom";
 import { ICocktail, ICocktailContext } from "../interfaces";
 
 export function CocktailInfoPage(): ReactElement {
-	const { cocktail, fetchCocktailById } = useOutletContext<ICocktailContext>();
+	const { cocktail, fetchCocktailById, isLoading } = useOutletContext<ICocktailContext>();
 	const { idDrink } = useParams(); // get id from url https://www.dhiwise.com/post/passing-parameters-to-routes-react-development
 
 	// load on render
@@ -36,27 +36,30 @@ export function CocktailInfoPage(): ReactElement {
 	return (
 		<div className="cocktail-info-page">
 			<h1>Drink Details</h1>
-			{cocktail && (
-				<div className="cocktail-detail">
-					<figure className="image-container">
-						<img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
-					</figure>
-					<section className="cocktail-text">
-						<h1>{cocktail.strDrink}</h1>
-						<p>Category: {cocktail.strCategory}</p>
-						{cocktail.strTags && <p>Tags: {cocktail.strTags}</p>}
-						<p>Glass: {cocktail.strGlass}</p>
-						<h2>Ingredients and Measurements</h2>
-						<ul>
-							{readIngredientsAndMeasures()!.map((item, index) =>
-								<li key={index}><p>{item.ingredient} - {item.measure}</p></li>
-							)}
-						</ul>
-						<h2>Instructions</h2>
-						<p>{cocktail.strInstructions}</p>
-					</section>
-				</div>
-			)
+			{isLoading ? (
+				<span className="loader" />
+			) : (
+				cocktail && (
+					<div className="cocktail-detail">
+						<figure className="image-container">
+							<img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+						</figure>
+						<section className="cocktail-text">
+							<h1>{cocktail.strDrink}</h1>
+							<p>Category: {cocktail.strCategory}</p>
+							{cocktail.strTags && <p>Tags: {cocktail.strTags}</p>}
+							<p>Glass: {cocktail.strGlass}</p>
+							<h2>Ingredients and Measurements</h2>
+							<ul>
+								{readIngredientsAndMeasures()!.map((item, index) =>
+									<li key={index}><p>{item.ingredient} - {item.measure}</p></li>
+								)}
+							</ul>
+							<h2>Instructions</h2>
+							<p>{cocktail.strInstructions}</p>
+						</section>
+					</div>
+				))
 			}
 		</div>
 	);

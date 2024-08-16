@@ -3,7 +3,7 @@ import { ICocktail, ICocktailContext } from "../interfaces";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 export function SearchPage(): ReactElement {
-	const { drinks, fetchCocktailSearch } = useOutletContext<ICocktailContext>();
+	const { drinks, fetchCocktailSearch, isLoading } = useOutletContext<ICocktailContext>();
 	const [searchInput, setSearchInput] = useState("");
 	const [page, setPage] = useState(0);
 	const [currentPageDrinks, setCurrentPageDrinks] = useState<ICocktail[]>([]);
@@ -48,23 +48,29 @@ export function SearchPage(): ReactElement {
 	return (
 		<div className="search-page">
 			<h1>Search Drinks</h1>
-			<form className="search-form" onSubmit={handleSubmit}>
-				<input type="text" className="search-input" placeholder=" 🔎︎  Search for a drink..." value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
-				<button type="submit" className="search-button">Search</button>
-			</form>
-			<ul>
-				{drinks && currentPageDrinks.map(drink => (
-					<li key={drink.idDrink} onClick={() => handleCocktailClick(drink.idDrink)}>
-						<img src={drink.strDrinkThumb} />
-						<p>{drink.strDrink}</p>
-						<span>See More</span>
-					</li>
-				))}
-			</ul>
-			<div className="search-buttons">
-				<button type="button" onClick={navBack} disabled={page <= 0}>Prev Page</button>
-				<button type="button" onClick={navForward} disabled={!drinks || page >= Math.ceil(drinks.length / drinksPerPage) - 1}>Next Page</button>
-			</div>
+			{isLoading ? (
+				<span className="loader" />
+			) : (
+				<>
+					<form className="search-form" onSubmit={handleSubmit}>
+						<input type="text" className="search-input" placeholder=" 🔎︎  Search for a drink..." value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+						<button type="submit" className="search-button">Search</button>
+					</form>
+					<ul>
+						{drinks && currentPageDrinks.map(drink => (
+							<li key={drink.idDrink} onClick={() => handleCocktailClick(drink.idDrink)}>
+								<img src={drink.strDrinkThumb} />
+								<p>{drink.strDrink}</p>
+								<span>See More</span>
+							</li>
+						))}
+					</ul>
+					<div className="search-buttons">
+						<button type="button" onClick={navBack} disabled={page <= 0}>Prev Page</button>
+						<button type="button" onClick={navForward} disabled={!drinks || page >= Math.ceil(drinks.length / drinksPerPage) - 1}>Next Page</button>
+					</div>
+				</>
+			)}
 		</div>
 	);
 }
