@@ -10,43 +10,41 @@ export function App(): ReactElement {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	// functions
-	const fetchCocktailRandom = (): void => {
+	const fetchData = async (url: string): Promise<any> => {
 		setIsLoading(true);
-		fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") // fetch the random api endpoint
-			.then(response => response.json()) // parse to json
-			.then(data => { // data variable will now keep the response object
-				setCocktail(data.drinks[0]); // we only get one cocktail back in drinks array
-			})
-			.catch(error => {
-				console.error("Error fetching the api, error: ", error);
-			});
-		setIsLoading(false);
+		try {
+			const response = await fetch(url); // fetch the api endpoint
+			const data = await response.json(); // parse to json
+			return data; // data variable will now keep the response object
+		}
+		catch (error) {
+			console.error("Error fetching the api, error: ", error);
+			return null;
+		}
+		finally {
+			setIsLoading(false);
+		}
 	};
 
-	const fetchCocktailById = (idDrink: string): void => {
-		setIsLoading(true);
-		fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`) // fetch the specific id endpoint
-			.then(response => response.json()) // parse to json
-			.then(data => { // data variable will now keep the response object
-				setCocktail(data.drinks[0]); // we only get one cocktail back in drinks array
-			})
-			.catch(error => {
-				console.error("Error fetching the api, error: ", error);
-			});
-		setIsLoading(false);
+	const fetchCocktailRandom = async (): Promise<void> => {
+		const data: any = await fetchData("https://www.thecocktaildb.com/api/json/v1/1/random.php"); // random endpoint
+		if (data != null) {
+			setCocktail(data.drinks[0]); // we only get one cocktail back in drinks array
+		}
 	};
 
-	const fetchCocktailSearch = (query: string): void => {
-		setIsLoading(true);
-		fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`) // fetch the search api endpoint
-			.then(response => response.json())
-			.then(data => {
-				setDrinks(data.drinks || []); // set drinks array
-			})
-			.catch(error => {
-				console.error("Error fetching the api, error: ", error);
-			});
-		setIsLoading(false);
+	const fetchCocktailById = async (idDrink: string): Promise<void> => {
+		const data: any = await fetchData(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`) // specific id endpoint
+		if (data != null) {
+			setCocktail(data.drinks[0]); // we only get one cocktail back in drinks array
+		}
+	};
+
+	const fetchCocktailSearch = async (query: string): Promise<void> => {
+		const data: any = await fetchData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`) // search api endpoint
+		if (data != null) {
+			setDrinks(data.drinks || []); // set drinks array
+		}
 	};
 
 	// context
